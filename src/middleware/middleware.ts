@@ -14,7 +14,7 @@ interface CustomRequest extends Request {
     user?: any;
 }
 
-async function auth(req: CustomRequest, res: Response, next: NextFunction) {
+async function auth(req: CustomRequest, res: Response, next: NextFunction):Promise<any> {
     try{
         const token = req.headers.authorization?.split(' ')[1];
         if(!token){
