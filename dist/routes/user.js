@@ -23,12 +23,10 @@ const userrouter = (0, express_1.Router)();
 userrouter.get('/test', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     res.json({ message: 'test route working fine' });
 }));
-//@ts-ignore
 userrouter.post('/register', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    // Zod validation schema
     const requirebody = zod_1.default.object({
-        username: zod_1.default.string().min(3).max(20).regex(/^[a-zA-Z0-9]+$/),
-        password: zod_1.default.string().min(6).max(20).regex(/^[a-zA-Z0-9]+$/),
+        username: zod_1.default.string().min(3).max(20),
+        password: zod_1.default.string().min(6).max(20),
         email: zod_1.default.string().email(),
     });
     try {
@@ -51,7 +49,6 @@ userrouter.post('/register', (req, res) => __awaiter(void 0, void 0, void 0, fun
         res.status(500).json({ message: 'User creation failed' });
     }
 }));
-//@ts-ignore
 userrouter.post('/login', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { username, password } = req.body;
     const user = yield dbschema_1.Usermodel.findOne({ username });
@@ -75,7 +72,6 @@ userrouter.post('/login', (req, res) => __awaiter(void 0, void 0, void 0, functi
     }
     return res.status(401).json({ message: 'Invalid username or password' });
 }));
-//@ts-ignore
 userrouter.get('/content', middleware_1.default, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
     try {

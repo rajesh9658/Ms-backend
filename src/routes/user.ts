@@ -18,8 +18,8 @@ userrouter.get('/test', async (req, res) => {
 
 userrouter.post('/register', async (req: Request, res: Response):Promise<any> => {    // Zod validation schema
     const requirebody = z.object({
-        username: z.string().min(3).max(20).regex(/^[a-zA-Z0-9]+$/),
-        password: z.string().min(6).max(20).regex(/^[a-zA-Z0-9]+$/),
+        username: z.string().min(3).max(20),
+        password: z.string().min(6).max(20),
         email: z.string().email(),
     });
 

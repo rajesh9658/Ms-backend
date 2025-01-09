@@ -8,10 +8,13 @@ import userrouter from './routes/user';
 import tagrouter from './routes/tags';
 import contentrouter from './routes/content';
 import brainrouter from './routes/brains';
+import { Contentmodel } from './db/dbschema';
+import  cors from 'cors';
 dotenv.config();
 
-const app = express();
 
+const app = express();
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
